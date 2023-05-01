@@ -6,14 +6,34 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
-      name: 'title',
-      title: 'Title',
+      name: 'question',
+      title: 'Question',
       type: 'string',
     }),
     defineField({
-      name: 'description',
-      title: 'Description',
-      type: 'text',
+      name: 'sahianswer',
+      title: 'sahianswer',
+      type: 'string',
+    }),
+    defineField({
+      name: 'galat1',
+      title: 'galat1',
+      type: 'string',
+    }),
+    defineField({
+      name: 'galat2',
+      title: 'galat2',
+      type: 'string',
+    }),
+    defineField({
+      name: 'galat3',
+      title: 'galat3',
+      type: 'string',
+    }),
+    defineField({
+      name: 'details',
+      title: 'details',
+      type: 'blockContent',
     }),
   ],
 })

@@ -1,65 +1,65 @@
 import {defineField, defineType} from 'sanity'
 
 export default defineType({
-  name: 'post',
-  title: 'Post',
+  name: 'exams',
+  title: 'Exams',
   type: 'document',
   fields: [
     defineField({
-      name: 'title',
-      title: 'Title',
+      name: 'paper',
+      title: 'paper',
       type: 'string',
     }),
     defineField({
-      name: 'slug',
+      name: 'examname',
+      title: 'examname',
+      // type: 'reference',
+      // to: {type: 'examname'},
+      type: 'string',
+      options: {
+        list: [
+          {value: 'ssc', title: 'ssc'},
+          {value: 'drdo', title: 'drdo'},
+          {value: 'uppcl', title: 'uppcl'},
+          {value: 'uprvunl', title: 'uprvunl'},
+        ],
+      },
+    }),
+    defineField({
+      name: 'branch',
+      title: 'branch',
+      type: 'string',
+      options: {
+        list: [
+          {value: 'electrical', title: 'electrical'},
+          {value: 'mechanical', title: 'mechanical'},
+          {value: 'electronics', title: 'electronics'},
+          {value: 'computer science', title: 'computer science'},
+        ],
+      },
+      // type: 'reference',
+      // to: {type: 'branch'},
+    }),
+    defineField({
       title: 'Slug',
+      name: 'slug',
       type: 'slug',
       options: {
-        source: 'title',
-        maxLength: 96,
+        source: 'paper',
+        maxLength: 200, // will be ignored if slugify is set
+        slugify: (input) => input.toLowerCase().replace(/\s+/g, '-').slice(0, 200),
       },
     }),
     defineField({
-      name: 'author',
-      title: 'Author',
-      type: 'reference',
-      to: {type: 'author'},
-    }),
-    defineField({
-      name: 'mainImage',
-      title: 'Main image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-    }),
-    defineField({
-      name: 'categories',
-      title: 'Categories',
+      name: 'questions',
+      title: 'Questions',
       type: 'array',
-      of: [{type: 'reference', to: {type: 'category'}}],
-    }),
-    defineField({
-      name: 'publishedAt',
-      title: 'Published at',
-      type: 'datetime',
-    }),
-    defineField({
-      name: 'body',
-      title: 'Body',
-      type: 'blockContent',
+      of: [{type: 'category'}],
     }),
   ],
-
   preview: {
     select: {
-      title: 'title',
-      author: 'author.name',
-      media: 'mainImage',
-    },
-    prepare(selection) {
-      const {author} = selection
-      return {...selection, subtitle: author && `by ${author}`}
+      title: 'paper',
     },
   },
 })
