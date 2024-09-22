@@ -98,6 +98,11 @@ export default defineType({
       },
     }),
     defineField({
+      name: 'details',
+      title: 'Details about the Exam',
+      type: 'blockContent',
+    }),
+    defineField({
       name: 'questions',
       title: 'Questions',
       type: 'array',
